@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 
 class AppThemes {
 
+  AppThemes._();
+
   static final light = ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: MyColors.primarycolor),
         useMaterial3: true,
