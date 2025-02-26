@@ -1,3 +1,7 @@
+import 'dart:ffi';
+
+import 'package:flutter/material.dart';
+
 class MyStrings {
 
   MyStrings._();
