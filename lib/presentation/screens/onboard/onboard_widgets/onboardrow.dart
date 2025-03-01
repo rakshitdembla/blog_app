@@ -16,8 +16,8 @@ class _onboardrowState extends State<onboardrow> {
       padding: EdgeInsets.zero,
       height: 44.h,
       width: 360.w,
-      child: Expanded(
-        child: Row(
+      child: 
+        Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -51,7 +51,7 @@ class _onboardrowState extends State<onboardrow> {
                 ))
           ],
         ),
-      ),
-    );
+      );
+    
   }
 }

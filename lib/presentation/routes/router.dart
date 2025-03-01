@@ -11,5 +11,8 @@ class AppRouter extends RootStackRouter {
     AutoRoute(page: SplashScreenRoute.page ,path: "/",initial: true),
     AutoRoute(page: OnboardRoute.page),
     AutoRoute(page: UserpageRoute.page),
+    AutoRoute(page: LoginPageRoute.page),
+    AutoRoute(page: RegisterScreenRoute.page),
+    AutoRoute(page: GeneralScreenRoute.page),
   ];
 }

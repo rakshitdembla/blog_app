@@ -1,5 +1,7 @@
 import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:blog_app/data/data_sources/remote_data/api_client.dart';
+import 'package:blog_app/data/data_sources/remote_data/api_endurls.dart';
 
 import 'package:blog_app/presentation/screens/onboard/onboard_widgets/pagecontroller.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
