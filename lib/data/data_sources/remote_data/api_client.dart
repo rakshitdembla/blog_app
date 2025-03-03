@@ -4,7 +4,7 @@ import 'package:blog_app/data/data_sources/remote_data/api_exception.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
-class ApiClient {
+class ApiClient { 
   late BaseOptions options;
   late Dio dio;
 
@@ -49,12 +49,15 @@ class ApiClient {
   }
 
   //post requests
-  Future<Response> postrequest({required String endurlPath}) async {
-    dynamic postbody = {"title": "post title", "slug": "empty-slug"};
+  Future<Response> postrequest(
+      {required String endurlPath,
+      Map<String, dynamic>? postheaders,
+      dynamic postbody}) async {
+    // dynamic postbody = {"title": "post title", "slug": "empty-slug"};
 
-    Map<String, dynamic> postheaders = {
+    /*Map<String, dynamic> postheaders = {
       "Authorization": "Bearer 2521|6kinrH1khq59zy5UxialyeLXdyL0HnIFUa9kMuu5"
-    };
+    };*/
 
     try {
       debugPrint("🚀==========Api Request Sent==========🚀");

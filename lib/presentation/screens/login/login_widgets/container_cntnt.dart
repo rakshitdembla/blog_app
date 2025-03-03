@@ -1,12 +1,19 @@
 part of 'login_widgets_imports.dart';
 
-class container_content extends StatelessWidget {
+class container_content extends StatefulWidget {
   const container_content({
     super.key,
   });
 
   @override
+  State<container_content> createState() => _container_contentState();
+}
+
+class _container_contentState extends State<container_content> {
+  @override
   Widget build(BuildContext context) {
+    TextEditingController emailcontroller = TextEditingController();
+    TextEditingController passcontroller = TextEditingController();
     bool value = false;
     return Padding(
       padding: EdgeInsets.fromLTRB(17, 35, 17, 0),
@@ -23,12 +30,13 @@ class container_content extends StatelessWidget {
           SizedBox(
             height: 5,
           ),
-          const VxTextField(
+          VxTextField(
             fillColor: Colors.transparent,
             borderColor: MyColors.primarycolor,
             borderRadius: 10,
-            prefixIcon: Icon(Icons.email_outlined),
+            prefixIcon: const Icon(Icons.email_outlined),
             borderType: VxTextFieldBorderType.roundLine,
+            controller: emailcontroller,
           ),
           SizedBox(
             height: 25,
@@ -37,7 +45,7 @@ class container_content extends StatelessWidget {
           SizedBox(
             height: 5,
           ),
-          const VxTextField(
+           VxTextField(
             isPassword: true,
             obscureText: true,
             fillColor: Colors.transparent,
@@ -45,6 +53,7 @@ class container_content extends StatelessWidget {
             borderRadius: 10,
             prefixIcon: Icon(Icons.lock_open_outlined),
             borderType: VxTextFieldBorderType.roundLine,
+            controller: passcontroller,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -87,14 +96,21 @@ class container_content extends StatelessWidget {
           SizedBox(
             height: 40,
           ),
-          commonelevatedbutton(name: "Login", onPressed: () {AutoRouter.of(context).push(GeneralScreenRoute());}),
+          commonelevatedbutton(
+              name: "Login",
+              onPressed: () {
+                AutoRouter.of(context).push(GeneralScreenRoute());
+              }),
           SizedBox(
             height: 30,
           ),
           rich_text_widget(
               color: MyColors.blacktextcolor,
               CtaText: "Sign up",
-              recognizer: TapGestureRecognizer()..onTap = () {AutoRouter.of(context).push(RegisterScreenRoute());},
+              recognizer: TapGestureRecognizer()
+                ..onTap = () {
+                  AutoRouter.of(context).push(RegisterScreenRoute());
+                },
               initialtext: "Don't have an account?")
         ],
       ),

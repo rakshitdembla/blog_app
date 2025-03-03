@@ -47,8 +47,8 @@ class _OnboardState extends State<Onboard> {
                     commonelevatedbutton(
                       name: "Get Started!",
                       onPressed: () {
-                        ApiClient().postrequest(endurlPath: ApiEndurls.addtags);
-                        //AutoRouter.of(context).push(UserpageRoute());
+                       
+                        AutoRouter.of(context).push(UserpageRoute());
                       },
                     ),
                     SizedBox(
