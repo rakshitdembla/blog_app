@@ -10,11 +10,18 @@ class container_content extends StatefulWidget {
 }
 
 class _container_contentState extends State<container_content> {
+  TextEditingController emailcontroller = TextEditingController();
+  TextEditingController passcontroller = TextEditingController();
+  bool value = false;
+
+  @override
+  void dispose() {
+    emailcontroller.dispose();
+    passcontroller.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
-    TextEditingController emailcontroller = TextEditingController();
-    TextEditingController passcontroller = TextEditingController();
-    bool value = false;
     return Padding(
       padding: EdgeInsets.fromLTRB(17, 35, 17, 0),
       child: Column(
@@ -39,13 +46,10 @@ class _container_contentState extends State<container_content> {
             controller: emailcontroller,
           ),
           SizedBox(
-            height: 25,
+            height: 30,
           ),
           Align(alignment: Alignment.topLeft, child: "Password".text.make()),
-          SizedBox(
-            height: 5,
-          ),
-           VxTextField(
+          VxTextField(
             isPassword: true,
             obscureText: true,
             fillColor: Colors.transparent,
@@ -96,11 +100,35 @@ class _container_contentState extends State<container_content> {
           SizedBox(
             height: 40,
           ),
-          commonelevatedbutton(
-              name: "Login",
-              onPressed: () {
+          BlocConsumer<LoginViewmodel, LoginStates>(
+            listener: (context, state) {
+              if (state is LoginAuthorisedState) {
                 AutoRouter.of(context).push(GeneralScreenRoute());
-              }),
+              } else if (state is LoginUnauthorisedState) {
+                Utils.errorsnackbar(
+                    message: state.errormessage, context: context);
+              } else if (state is LoginInvalidState) {
+                Utils.errorsnackbar(message: state.error, context: context);
+              }
+            },
+            builder: (context, state) {
+              if (state is LoginLoadingState) {
+                return Center(
+                  child: CircularProgressIndicator(),
+                );
+              } else {
+                return commonelevatedbutton(
+                  name: "Login",
+                  onPressed: () {
+                    context.read<LoginViewmodel>().add(LoginEvent(
+                        email: emailcontroller.text,
+                        password: passcontroller.text));
+
+                  },
+                );
+              }
+            },
+          ),
           SizedBox(
             height: 30,
           ),

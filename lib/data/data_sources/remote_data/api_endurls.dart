@@ -6,4 +6,5 @@ class ApiEndurls {
   static final String posts = "posts";
   static final String categories = "categories";
   static final String login = "login";
+  static final String logout = "logout";
 }

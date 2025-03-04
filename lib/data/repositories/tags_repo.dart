@@ -6,8 +6,9 @@ import 'package:flutter/material.dart';
 class TagsRepo extends ApiClient {
   TagsRepo();
   Future<TagModel> getalltags() async {
-    var response = await getrequest(endurlPath: ApiEndurls.tags);
+   
     try {
+       var response = await getrequest(endurlPath: ApiEndurls.tags);
       if (response.statusCode == 200) {
         TagModel tagmodel = TagModel.fromjson(response.data);
         return tagmodel;
@@ -15,7 +16,7 @@ class TagsRepo extends ApiClient {
         return TagModel();
       }
     } catch (e) {
-      debugPrint("=========❌tags_repo exception : ${e.toString()}❌===========");
+      //debugPrint("=========❌tags_repo exception : ${e.toString()}❌===========");
       return TagModel();
     }
   }

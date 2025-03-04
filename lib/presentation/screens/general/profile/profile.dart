@@ -20,114 +20,132 @@ class _ProfileState extends State<Profile> {
             decoration: BoxDecoration(
                 color: MyColors.primarycolor,
                 borderRadius: BorderRadius.circular(30)),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Align(
-                  child: Icon(
-                    Icons.logout,
-                    color: MyColors.whitecolor,
-                  ),
-                  alignment: Alignment.topRight,
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                CircleAvatar(
-                  radius: 55,
-                  child: Icon(
-                    Icons.person,
-                    size: 50,
-                  ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  "Rakshit Dembla",
-                  style: TextStyle(
-                      color: MyColors.whitetextcolor,
-                      fontWeight: FontWeight.w700,
-                      fontSize: 20),
-                ),
-                SizedBox(
-                  height: 3,
-                ),
-                Text(
-                  "rakshitdembla@gmail.com",
-                  style: TextStyle(color: MyColors.whitetextcolor),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Text(
-                  "Rakshit Dembla has currently showed interest in Flutter despite of having BBA as an degree he still decides to follow his passion of technical field",
-                  style: TextStyle(color: MyColors.whitetextcolor),
-                  textAlign: TextAlign.center,
-                ),
-                SizedBox(
-                  height: 30,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Column(
-                      children: [
-                        Text(
-                          "6",
-                          style: TextStyle(
-                              color: MyColors.whitetextcolor,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 17),
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(0, 40, 20, 0),
+                    child: Align(
+                      alignment: Alignment.topRight,
+                      child: BlocListener<LogoutViewmodel, LogoutStates>(
+                        listener: (context, state) {
+                        if (state is LogoutFailed) {
+                            Utils.errorsnackbar(message: state.message.toString(), context: context);
+                          } else if (state is LogoutLoadingState) {
+                            Utils.normalsnackbar(message: state.message.toString(), context: context);
+                          } else{}
+                         
+                        },
+                        child: IconButton(
+                          onPressed: () {
+                            context.read<LogoutViewmodel>().add(LogoutEvent());
+                          },
+                          icon:  Icon(
+                            size: 25,
+                            Icons.logout,
+                            color: MyColors.whitecolor,
+                          ),
                         ),
-                        SizedBox(
-                          height: 3,
-                        ),
-                        Text(
-                          "Posts",
-                          style: TextStyle(color: MyColors.whitetextcolor),
-                        )
-                      ],
+                      ),
                     ),
-                    Column(
-                      children: [
-                        Text(
-                          "0",
-                          style: TextStyle(
-                              color: MyColors.whitetextcolor,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 17),
-                        ),
-                        SizedBox(
-                          height: 3,
-                        ),
-                        Text(
-                          "Following",
-                          style: TextStyle(color: MyColors.whitetextcolor),
-                        )
-                      ],
+                  ),
+                  CircleAvatar(
+                    radius: 55,
+                    child: Icon(
+                      Icons.person,
+                      size: 50,
                     ),
-                    Column(
-                      children: [
-                        Text(
-                          "899",
-                          style: TextStyle(
-                              color: MyColors.whitetextcolor,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 17),
-                        ),
-                        SizedBox(
-                          height: 3,
-                        ),
-                        Text(
-                          "Followers",
-                          style: TextStyle(color: MyColors.whitetextcolor),
-                        )
-                      ],
-                    )
-                  ],
-                ),
-              ],
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    "Rakshit Dembla",
+                    style: TextStyle(
+                        color: MyColors.whitetextcolor,
+                        fontWeight: FontWeight.w700,
+                        fontSize: 20),
+                  ),
+                  SizedBox(
+                    height: 3,
+                  ),
+                  Text(
+                    "rakshitdembla@gmail.com",
+                    style: TextStyle(color: MyColors.whitetextcolor),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    "Rakshit Dembla has currently showed interest in Flutter despite of having BBA as an degree he still decides to follow his passion of technical field",
+                    style: TextStyle(color: MyColors.whitetextcolor),
+                    textAlign: TextAlign.center,
+                  ),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Column(
+                        children: [
+                          Text(
+                            "6",
+                            style: TextStyle(
+                                color: MyColors.whitetextcolor,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 17),
+                          ),
+                          SizedBox(
+                            height: 3,
+                          ),
+                          Text(
+                            "Posts",
+                            style: TextStyle(color: MyColors.whitetextcolor),
+                          )
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          Text(
+                            "0",
+                            style: TextStyle(
+                                color: MyColors.whitetextcolor,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 17),
+                          ),
+                          SizedBox(
+                            height: 3,
+                          ),
+                          Text(
+                            "Following",
+                            style: TextStyle(color: MyColors.whitetextcolor),
+                          )
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          Text(
+                            "899",
+                            style: TextStyle(
+                                color: MyColors.whitetextcolor,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 17),
+                          ),
+                          SizedBox(
+                            height: 3,
+                          ),
+                          Text(
+                            "Followers",
+                            style: TextStyle(color: MyColors.whitetextcolor),
+                          )
+                        ],
+                      )
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         ),

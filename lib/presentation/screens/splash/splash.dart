@@ -12,14 +12,9 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    redirect();
+    Utils.manipulatelogin(context);
   }
-
-  void redirect() async {
-    await Future.delayed(const Duration(seconds: 4), () {
-      AutoRouter.of(context).push(OnboardRoute());
-    });
-  }
+ 
 
   @override
   Widget build(BuildContext context) {
