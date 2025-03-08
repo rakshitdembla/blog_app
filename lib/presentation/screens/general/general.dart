@@ -19,9 +19,9 @@ class _GeneralScreenState extends State<GeneralScreen> {
   int visit = 0;
   final List<Widget> pages = [
     HomePage(),
-    Tags(),
+    Tags(navigationType: NavigationType.outer),
     Addpost(),
-    Category(),
+    Categories(navigationType: NavigationType.outer),
     Profile()
   ];
 

@@ -25,7 +25,7 @@ class _SplashScreenState extends State<SplashScreen> {
         color: MyColors.primarycolor,
         child: Center(
           child: FadedScaleAnimation(
-            child: Image.asset(Assets.assetsImagesLogo,height: 220.h,width: 220.w,)),
+            child: Image.asset(Assets.assetsImagesLogo,height: 150.h,width: 150.w,)),
         ),
       ),
     );

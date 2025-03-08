@@ -12,7 +12,7 @@ class Assets {
 
   /// Assets for assetsImagesNetflix
   /// assets/images/netflix.webp
-  static const String assetsImagesNetflix = "assets/images/netflix.webp";
+  static const String assetsImagesDefault = "assets/images/default_image.webp";
 
   /// Assets for assetsImagesOnboard1
   /// assets/images/onboard1.png

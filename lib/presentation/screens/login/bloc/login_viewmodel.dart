@@ -3,7 +3,6 @@ import 'package:blog_app/presentation/screens/login/bloc/login_events.dart';
 import 'package:blog_app/presentation/screens/login/bloc/login_states.dart';
 import 'package:blog_app/presentation/screens/login/login_model.dart';
 import 'package:blog_app/utils/utils.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginViewmodel extends Bloc<LoginEvent, LoginStates> {
@@ -11,8 +10,8 @@ class LoginViewmodel extends Bloc<LoginEvent, LoginStates> {
   LoginViewmodel({required this.repository}) : super(LoginInitialState()) {
     on<LoginEvent>(
       (event, emit) async {
-        if (!event.email.contains("@")) {
-          emit(LoginInvalidState(error: "Please enter a valid email"));
+        if (event.email.isEmpty && event.password.isEmpty) {
+          emit(LoginInvalidState(error: "All fields are mandatory!"));
         } else if (event.email.length <= 5) {
           emit(LoginInvalidState(error: "Please enter a valid email"));
         } else if (event.password.length < 8) {
@@ -20,20 +19,27 @@ class LoginViewmodel extends Bloc<LoginEvent, LoginStates> {
         } else {
           //main authorised login
           emit(LoginLoadingState());
-          try { //debugPrint("++++++++++++++++Bloc tries to login+++++++++++++++++++");
+          try {
+           
             LoginModel loginmodel = await repository.loginrepo.postlogin(
-              
                 email: event.email.toString(),
                 password: event.password.toString());
-                 
 
-            Utils.savetoken(token: loginmodel.access_token.toString());
-             //debugPrint("++++++++++++++++Bloc saves token+++++++++++++++++++");
+            if (loginmodel.access_token != null ||
+                loginmodel.token_type == "Bearer") {
+              Utils.savetoken(token: loginmodel.access_token.toString());
+            
 
-            emit(LoginAuthorisedState());
+              emit(LoginAuthorisedState());
+            } else {
+            
+              emit(LoginUnauthorisedState(errormessage: "Unauthorised User!"));
+            }
           } catch (e) {
-              //debugPrint("++++++++++++++++Bloc of Login caught exception! emit : Unauthorised state+++++++++++++++++++");
-            emit(LoginUnauthorisedState(errormessage: "Unauthorised Login Attempt!"));
+           
+           
+            emit(LoginUnauthorisedState(
+                errormessage: "Unauthorised Login Attempt!"));
           }
         }
       },

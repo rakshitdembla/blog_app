@@ -9,205 +9,123 @@ class Profile extends StatefulWidget {
 
 class _ProfileState extends State<Profile> {
   @override
+  void initState() {
+    super.initState();
+    context.read<ProfileViewmodel>().add(FetchEvent());
+
+    ProfileRepo().getuserposts();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(children: [
-        Align(
-          alignment: Alignment.topCenter,
-          child: Container(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height * 0.5,
-            decoration: BoxDecoration(
-                color: MyColors.primarycolor,
-                borderRadius: BorderRadius.circular(30)),
-            child: SingleChildScrollView(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(0, 40, 20, 0),
-                    child: Align(
-                      alignment: Alignment.topRight,
-                      child: BlocListener<LogoutViewmodel, LogoutStates>(
-                        listener: (context, state) {
-                        if (state is LogoutFailed) {
-                            Utils.errorsnackbar(message: state.message.toString(), context: context);
-                          } else if (state is LogoutLoadingState) {
-                            Utils.normalsnackbar(message: state.message.toString(), context: context);
-                          } else{}
-                         
-                        },
-                        child: IconButton(
-                          onPressed: () {
-                            context.read<LogoutViewmodel>().add(LogoutEvent());
-                          },
-                          icon:  Icon(
-                            size: 25,
-                            Icons.logout,
-                            color: MyColors.whitecolor,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  CircleAvatar(
-                    radius: 55,
-                    child: Icon(
-                      Icons.person,
-                      size: 50,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    "Rakshit Dembla",
-                    style: TextStyle(
-                        color: MyColors.whitetextcolor,
-                        fontWeight: FontWeight.w700,
-                        fontSize: 20),
-                  ),
-                  SizedBox(
-                    height: 3,
-                  ),
-                  Text(
-                    "rakshitdembla@gmail.com",
-                    style: TextStyle(color: MyColors.whitetextcolor),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Text(
-                    "Rakshit Dembla has currently showed interest in Flutter despite of having BBA as an degree he still decides to follow his passion of technical field",
-                    style: TextStyle(color: MyColors.whitetextcolor),
-                    textAlign: TextAlign.center,
-                  ),
-                  SizedBox(
-                    height: 30,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Column(
-                        children: [
-                          Text(
-                            "6",
-                            style: TextStyle(
-                                color: MyColors.whitetextcolor,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 17),
-                          ),
-                          SizedBox(
-                            height: 3,
-                          ),
-                          Text(
-                            "Posts",
-                            style: TextStyle(color: MyColors.whitetextcolor),
-                          )
-                        ],
-                      ),
-                      Column(
-                        children: [
-                          Text(
-                            "0",
-                            style: TextStyle(
-                                color: MyColors.whitetextcolor,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 17),
-                          ),
-                          SizedBox(
-                            height: 3,
-                          ),
-                          Text(
-                            "Following",
-                            style: TextStyle(color: MyColors.whitetextcolor),
-                          )
-                        ],
-                      ),
-                      Column(
-                        children: [
-                          Text(
-                            "899",
-                            style: TextStyle(
-                                color: MyColors.whitetextcolor,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 17),
-                          ),
-                          SizedBox(
-                            height: 3,
-                          ),
-                          Text(
-                            "Followers",
-                            style: TextStyle(color: MyColors.whitetextcolor),
-                          )
-                        ],
-                      )
-                    ],
-                  ),
-                ],
+      body: RefreshIndicator.adaptive(
+        color: MyColors.primarycolor,
+        onRefresh: () async {
+          await RefreshFunctions.refreshprofile(context, mounted);
+        },
+        child: SingleChildScrollView(
+          child: Column(children: [
+            ProfileData(),
+            SizedBox(
+              height: 10,
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 12),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "My Posts",
+                  style: TextStyle(
+                      color: MyColors.blacktextcolor,
+                      fontSize: 17,
+                      fontWeight: FontWeight.w600),
+                ),
               ),
             ),
-          ),
-        ),
-        SizedBox(
-          height: 10,
-        ),
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 10),
-          child: Align(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              "My Posts",
-              style: TextStyle(
-                  color: MyColors.blacktextcolor,
-                  fontSize: 17,
-                  fontWeight: FontWeight.w600),
+            SizedBox(
+              height: 10,
             ),
-          ),
-        ),
-        SizedBox(
-          height: 10,
-        ),
-        Flexible(
-          child: GridView.builder(
-              padding: EdgeInsets.zero,
-              shrinkWrap: true,
-              itemCount: 12,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  mainAxisSpacing: 0,
-                  crossAxisSpacing: 3,
-                  childAspectRatio: 1.12),
-              itemBuilder: (context, index) => Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 10),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(7.5),
-                          child: Image.asset(
-                            Assets.assetsImagesNetflix,
-                            fit: BoxFit.fill,
+            BlocBuilder<ProfileViewmodel, ProfileStates>(
+              builder: (context, state) {
+               
+                if (state is ProfileLoadingState ||
+                    state is ProfileInitialState) {
+                  return Center(
+                    child: Text("Fetching Posts...")
+                  );
+                } else if (state is ProfileErrorState) {
+                  return Center(child: Text(state.error.toString()));
+                } else if (state is ProfileLoadedState) {
+                  return GridView.builder(
+                      physics: NeverScrollableScrollPhysics(),
+                      padding: EdgeInsets.zero,
+                      shrinkWrap: true,
+                      itemCount: state.profileModel.posts.length,
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          mainAxisSpacing: 3,
+                          crossAxisSpacing: 3,
+                          childAspectRatio: 1.12),
+                      itemBuilder: (context, index) {
+                        Post userpost = state.profileModel.posts[index];
+                        
+                        String? featureimage = userpost.featuredimage
+                            .toString()
+                            .replaceAll("public", "");
+                        String? finalimage =
+                            "https://techblog.codersangam.com/storage$featureimage";
+
+                        return Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 10),
+                          child: SizedBox(
+                            height: 150,
+                            width: 160,
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Flexible(
+                                  child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(7.5),
+                                      child: CachedNetworkImage(
+                                        fit: BoxFit.fill,
+                                        imageUrl: finalimage,
+                                        errorWidget: (context, url, error) {
+                                          return Center(
+                                            child: Icon(Icons.error),
+                                          );
+                                        },
+                                      )),
+                                ),
+                                Row(
+                                  children: [
+                                    Expanded(
+                                        child: Text(
+                                      userpost.title.toString(),
+                                      overflow: TextOverflow.ellipsis,
+                                      maxLines: 2,
+                                    )),
+                                   
+                                    IconButton(
+                                        onPressed: () {},
+                                        icon: Icon(Icons.more_vert_outlined))
+                                  ],
+                                )
+                              ],
+                            ),
                           ),
-                        ),
-                        Row(
-                          children: [
-                            Expanded(
-                                child: Text(
-                              "Netflix will charge a fees for sharing account passwords....",
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 2,
-                            )),
-                            IconButton(
-                                onPressed: () {},
-                                icon: Icon(Icons.more_vert_outlined))
-                          ],
-                        )
-                      ],
-                    ),
-                  )),
-        )
-      ]),
+                        );
+                      });
+                }
+
+                return Center(
+                  child: Text("An error occured!"),
+                );
+              },
+            ),
+          ]),
+        ),
+      ),
     );
   }
 }

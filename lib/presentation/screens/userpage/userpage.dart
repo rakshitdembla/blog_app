@@ -14,11 +14,10 @@ class _UserpageState extends State<Userpage> {
     return Scaffold(
       body: Stack(
         children: [
-          Container(
+          SizedBox(
               height: MediaQuery.of(context).size.height,
               width: MediaQuery.of(context).size.width,
-              
-                  child: Image.asset(
+              child: Image.asset(
                 Assets.assetsImagesAuthBg,
                 fit: BoxFit.fill,
               )),
@@ -26,21 +25,24 @@ class _UserpageState extends State<Userpage> {
             child: SafeArea(
               child: Column(
                 children: [
-                  Padding(
-                      padding: EdgeInsets.only(top: 20),
-                      child: Image.asset(Assets.assetsImagesLogo)),
+                  SizedBox(
+                          height: 80.h, width: 140.w,
+                        child: Image.asset(Assets.assetsImagesLogo,
+                        fit: BoxFit.contain,
+                          ),
+                      ),
                   Spacer(),
                   Text(
                     "Explore the world,\nBillions of thoughts.",
                     style: TextStyle(
                       color: MyColors.whitetextcolor,
-                      fontSize: 30,
+                      fontSize: 30.sp,
                       fontWeight: FontWeight.w900,
                     ),
                     textAlign: TextAlign.left,
                   ),
                   SizedBox(
-                    height: 60,
+                    height: 60.h,
                   ),
                   TextButton(
                     onPressed: () {
@@ -49,28 +51,36 @@ class _UserpageState extends State<Userpage> {
                     child: Text("Login",
                         style: GoogleFonts.poppins(
                             fontWeight: FontWeight.w500,
+                            fontSize : 16.5.sp,
                             color: MyColors.whitetextcolor)),
                   ),
                   SizedBox(
-                    height: 8,
+                    height: 8.h,
                   ),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      AutoRouter.of(context).push(RegisterScreenRoute());
+                    },
                     child: Text("Register",
                         style: GoogleFonts.poppins(
                             fontWeight: FontWeight.w500,
+                              fontSize : 16.5.sp,
                             color: MyColors.whitetextcolor)),
                   ),
                   SizedBox(
-                    height: 43,
+                    height: 43.h,
                   ),
                   rich_text_widget(
-                    color: MyColors.whitetextcolor,
+                      color: MyColors.whitetextcolor,
                       CtaText: "Browse Casually",
-                      recognizer: TapGestureRecognizer()..onTap = () {},
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () {
+                          Utils.showToast(
+                              message: "This feature isn't available yet!");
+                        },
                       initialtext: "Don't want to create"),
                   SizedBox(
-                    height: 17,
+                    height: 17.h,
                   ),
                 ],
               ),

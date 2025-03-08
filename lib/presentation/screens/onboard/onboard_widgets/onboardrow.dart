@@ -16,42 +16,47 @@ class _onboardrowState extends State<onboardrow> {
       padding: EdgeInsets.zero,
       height: 44.h,
       width: 360.w,
-      child: 
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            TextButton(
-                onPressed: () {},
-                child: Text(
-                  "Skip",
-                  style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w900,
-                      color: MyColors.blacktextcolor),
-                )),
-            SmoothPageIndicator(
-              axisDirection: Axis.horizontal,
-              controller: pagecontrol.pageController,
-              count: 3,
-              effect: WormEffect(
-                  dotColor: MyColors.GreyColor,
-                  dotWidth: 9,
-                  dotHeight: 9,
-                  activeDotColor: MyColors.primarycolor),
-            ),
-            TextButton(
-                onPressed: () {},
-                child: Text(
-                  "Next",
-                  style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w900,
-                      color: MyColors.blacktextcolor),
-                ))
-          ],
-        ),
-      );
-    
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          TextButton(
+              onPressed: () {
+                AutoRouter.of(context).push(UserpageRoute());
+              },
+              child: Text(
+                "Skip",
+                style: TextStyle(
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w300,
+                    color: MyColors.blacktextcolor),
+              )),
+          SmoothPageIndicator(
+            axisDirection: Axis.horizontal,
+            controller: pagecontrol.pageController,
+            count: 3,
+            effect: WormEffect(
+                dotColor: MyColors.GreyColor,
+                dotWidth: 9.w,
+                dotHeight: 9.h,
+                activeDotColor: MyColors.primarycolor),
+          ),
+          TextButton(
+              onPressed: () {
+                pagecontrol.pageController.nextPage(
+                  duration: Duration(milliseconds: 300),
+                  curve: Curves.easeInOut,
+                );
+              },
+              child: Text(
+                "Next",
+                style: TextStyle(
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w300,
+                    color: MyColors.blacktextcolor),
+              ))
+        ],
+      ),
+    );
   }
 }
