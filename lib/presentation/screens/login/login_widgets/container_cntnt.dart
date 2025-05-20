@@ -28,13 +28,13 @@ class _container_contentState extends State<container_content> {
       child: Column(
         children: [
           Text(
-            "Login",
+            "Login".i18n,
             style: TextStyle(fontWeight: FontWeight.w900, fontSize: 18.sp),
           ),
           SizedBox(
             height: 35.h,
           ),
-          Align(alignment: Alignment.topLeft, child: "Email".text.make()),
+          Align(alignment: Alignment.topLeft, child: "Email".i18n.text.make()),
           SizedBox(
             height: 5.h,
           ),
@@ -49,7 +49,7 @@ class _container_contentState extends State<container_content> {
           SizedBox(
             height: 30.h,
           ),
-          Align(alignment: Alignment.topLeft, child: "Password".text.make()),
+          Align(alignment: Alignment.topLeft, child: "Password".i18n.text.make()),
           VxTextField(
             isPassword: true,
             obscureText: true,
@@ -92,7 +92,7 @@ class _container_contentState extends State<container_content> {
                     ),
                   ),
                   Text(
-                    "Remember me",
+                    "Remember me".i18n,
                     style: GoogleFonts.poppins(
                       fontSize: 12.sp,
                       fontWeight: FontWeight.w600,
@@ -102,10 +102,10 @@ class _container_contentState extends State<container_content> {
               ),
               TextButton(
                   onPressed: () {
-                    Utils.showToast(message: "will be available soon, working on api :)");
+                    Utils.showToast(message: "will be available soon, working on api :)".i18n);
                   },
                   child: Text(
-                    "Forgot Password?",
+                    "Forgot Password?".i18n,
                     style: GoogleFonts.poppins(
                         color: MyColors.blacktextcolor,
                         fontSize: 12.sp,
@@ -137,7 +137,7 @@ class _container_contentState extends State<container_content> {
                 );
               } else {
                 return commonelevatedbutton(
-                  name: "Login",
+                  name: "Login".i18n,
                   onPressed: () {
                     context.read<LoginViewmodel>().add(LoginEvent(
                         email: emailcontroller.text,
@@ -152,12 +152,12 @@ class _container_contentState extends State<container_content> {
           ),
           rich_text_widget(
               color: MyColors.blacktextcolor,
-              CtaText: "Sign up",
+              CtaText: "Register".i18n,
               recognizer: TapGestureRecognizer()
                 ..onTap = () {
                     context.router.removeUntil((route) => route.name == UserpageRoute.name);
                 },
-              initialtext: "Don't have an account?")
+              initialtext: "Don't have an account?".i18n)
         ],
       ),
     );

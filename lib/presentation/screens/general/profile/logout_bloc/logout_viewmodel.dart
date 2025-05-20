@@ -1,3 +1,4 @@
+import 'package:blog_app/data/models/logout_model.dart';
 import 'package:blog_app/data/repositories/repository.dart';
 import 'package:blog_app/presentation/screens/general/profile/logout_bloc/logout_events.dart';
 import 'package:blog_app/presentation/screens/general/profile/logout_bloc/logout_states.dart';
@@ -11,13 +12,12 @@ class LogoutViewmodel extends Bloc<LogoutEvent, LogoutStates> {
       (event, emit) async {
         emit(LogoutLoadingState(message: "Logging out..."));
         try {
-          var logoutdata = repository.logoutRepo.postlogout();
+          LogoutModel logoutdata = await repository.logoutRepo.postlogout();
 
           Utils.clearPrefs();
-          var checktoken = Utils.gettoken();
-          emit(LogoutFailed(message: "An Error Occured!"));
-        
           
+
+          emit(LogoutLoggingout(message: "Logged out successfully!"));
         } catch (e) {
           emit(LogoutFailed(message: "An Error Occured!"));
         }

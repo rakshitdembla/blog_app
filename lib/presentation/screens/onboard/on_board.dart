@@ -12,6 +12,36 @@ class _OnboardState extends State<Onboard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        title: Padding(
+            padding: EdgeInsets.only(top: 20),
+            child: SizedBox(
+              height: 40.h,
+              width: 150.w,
+              child: Image.asset(
+                Assets.assetsImagesLogo,
+                fit: BoxFit.contain,
+                color: MyColors.primarycolor,
+              ),
+            )),
+        centerTitle: true,
+        automaticallyImplyLeading: false,
+        actions: [
+          Padding(
+              padding: EdgeInsets.only(top: 18, right: 20),
+              child: IconButton(
+                onPressed: () {
+                  AutoRouter.of(context).push(SettingsRoute());
+                },
+                icon: Icon(
+                  Icons.settings,
+                  color: MyColors.primarycolor,
+                  size: 27,
+                ),
+              ))
+        ],
+      ),
       backgroundColor: MyColors.whitecolor,
       body: SingleChildScrollView(
         child: Container(
@@ -22,25 +52,11 @@ class _OnboardState extends State<Onboard> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Padding(
-                        padding: EdgeInsets.only(top: 20),
-                        child: SizedBox(
-                          
-                          height: 40.h,
-                          width: 150.w,
-                          child: Image.asset(
-                            
-                            Assets.assetsImagesLogo,
-                            fit: BoxFit.contain,
-                            color: MyColors.primarycolor,
-                          ),
-                        )),
                     SingleChildScrollView(
                       child: SizedBox(
                         height: 500.h,
                         child: PageView(
-                          
-                          controller:pagecontrol.pageController,
+                          controller: pagecontrol.pageController,
                           scrollDirection: Axis.horizontal,
                           children: [
                             onboard1(),
@@ -49,13 +65,13 @@ class _OnboardState extends State<Onboard> {
                           ],
                         ),
                       ),
-                    ),SizedBox(
+                    ),
+                    SizedBox(
                       height: 40.h,
                     ),
                     commonelevatedbutton(
-                      name: "Get Started!",
+                      name: "Get Started!".i18n,
                       onPressed: () {
-                       
                         AutoRouter.of(context).push(UserpageRoute());
                       },
                     ),
@@ -73,4 +89,3 @@ class _OnboardState extends State<Onboard> {
     );
   }
 }
-

@@ -1,13 +1,19 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:blog_app/core/constants/my_colors.dart';
 import 'package:blog_app/data/repositories/user_posts_repo.dart';
+import 'package:blog_app/presentation/screens/general/profile/delete_post_bloc/delete_post_events.dart';
+import 'package:blog_app/presentation/screens/general/profile/delete_post_bloc/delete_post_states.dart';
+import 'package:blog_app/presentation/screens/general/profile/delete_post_bloc/delete_post_viewmodel.dart';
 import 'package:blog_app/presentation/screens/general/profile/profile_bloc/profile_events.dart';
 import 'package:blog_app/presentation/screens/general/profile/profile_bloc/profile_states.dart';
 import 'package:blog_app/presentation/screens/general/profile/profile_bloc/profile_viewmodel.dart';
 import 'package:blog_app/presentation/screens/general/profile/profile_model.dart';
 import 'package:blog_app/presentation/screens/general/profile/profile_widgets/profiledata.dart';
 import 'package:blog_app/utils/refresh_functions.dart';
+import 'package:blog_app/utils/utils.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 part 'profile.dart';

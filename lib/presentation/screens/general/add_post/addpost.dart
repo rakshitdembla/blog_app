@@ -30,6 +30,7 @@ class _AddpostState extends State<Addpost> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       appBar: AppBar(
         backgroundColor: MyColors.primarycolor,
         automaticallyImplyLeading: false,
@@ -80,6 +81,7 @@ class _AddpostState extends State<Addpost> {
           FocusScope.of(context).unfocus();
         },
         child: SingleChildScrollView(
+           keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
           child: Padding(
             padding: EdgeInsets.fromLTRB(12, 10, 12, 0),
             child: BlocConsumer<AddpostViewmodel, AddPostStates>(
@@ -216,10 +218,12 @@ class _AddpostState extends State<Addpost> {
                       ),
                       FleatherToolbar.basic(controller: controller),
                       IntrinsicHeight(
-                          child: FleatherField(
-                        controller: controller,
-                        focusNode: FocusNode(canRequestFocus: true),
-                      )),
+                          child: KeyboardAvoider(
+                            child: FleatherField(
+                                                    controller: controller,
+                                                    focusNode: FocusNode(canRequestFocus: true),
+                                                  ),
+                          )),
                     ],
                   );
                 }

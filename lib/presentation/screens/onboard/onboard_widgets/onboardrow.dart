@@ -25,7 +25,7 @@ class _onboardrowState extends State<onboardrow> {
                 AutoRouter.of(context).push(UserpageRoute());
               },
               child: Text(
-                "Skip",
+                "Skip".i18n,
                 style: TextStyle(
                     fontSize: 16.sp,
                     fontWeight: FontWeight.w300,
@@ -49,7 +49,7 @@ class _onboardrowState extends State<onboardrow> {
                 );
               },
               child: Text(
-                "Next",
+                "Next".i18n,
                 style: TextStyle(
                     fontSize: 16.sp,
                     fontWeight: FontWeight.w300,

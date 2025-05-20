@@ -82,8 +82,11 @@ class _TagsState extends State<Tags> {
                               itemBuilder: (context, index) {
                                 Tag tagdata = state.tags[index];
 
-                                return InkWell(
-                                  onTap: () {
+                                return  Card(
+                                    color: MyColors.whitecolor,
+                                    child: InkWell(
+                                      splashColor: const Color.fromARGB(84, 233, 147, 116),
+                                         onTap: () {
 
                                     if (widget.navigationType == NavigationType.inner) {
                                     AutoRouter.of(context)
@@ -91,63 +94,63 @@ class _TagsState extends State<Tags> {
 
                                         else {}
                                   },
-                                  child: Card(
-                                    color: MyColors.whitecolor,
-                                    child: SizedBox(
-                                      height: 60.h,
-                                      child: Padding(
-                                        padding: EdgeInsets.only(left: 14),
-                                        child: Row(
-                                          children: [
-                                            Text(
-                                              (index + 1).toString(),
-                                              style: TextStyle(
-                                                  color:
-                                                      MyColors.blacktextcolor),
+                                      child: SizedBox(
+                                        height: 60.h,
+                                        child: Padding(
+                                          padding: EdgeInsets.only(left: 14),
+                                          child: Row(
+                                              children: [
+                                                Text(
+                                                  (index + 1).toString(),
+                                                  style: TextStyle(
+                                                      color:
+                                                          MyColors.blacktextcolor),
+                                                ),
+                                                Spacer(
+                                                  flex: 1,
+                                                ),
+                                                Text(
+                                                  tagdata.title.toString(),
+                                                  style: TextStyle(
+                                                      color:
+                                                          MyColors.blacktextcolor),
+                                                  overflow: TextOverflow.ellipsis,
+                                                ),
+                                                Spacer(
+                                                  flex: 2,
+                                                ),
+                                                IconButton(
+                                                    onPressed: () {
+                                                      NavigationsData
+                                                          .UpdateTagNavigation(
+                                                              context,
+                                                              mounted,
+                                                              tagdata);
+                                                    },
+                                                    icon: Icon(
+                                                      Icons.edit,
+                                                      color: Colors.grey,
+                                                    )),
+                                                IconButton(
+                                                    onPressed: () async {
+                                                      context
+                                                          .read<
+                                                              DeleteTagViewModel>()
+                                                          .add(DeleteTag(
+                                                              id: tagdata.id ?? 0));
+                                                    },
+                                                    icon: Icon(
+                                                      Icons.delete,
+                                                      color: Colors.red,
+                                                    )),
+                                              ],
                                             ),
-                                            Spacer(
-                                              flex: 1,
-                                            ),
-                                            Text(
-                                              tagdata.title.toString(),
-                                              style: TextStyle(
-                                                  color:
-                                                      MyColors.blacktextcolor),
-                                              overflow: TextOverflow.ellipsis,
-                                            ),
-                                            Spacer(
-                                              flex: 2,
-                                            ),
-                                            IconButton(
-                                                onPressed: () {
-                                                  NavigationsData
-                                                      .UpdateTagNavigation(
-                                                          context,
-                                                          mounted,
-                                                          tagdata);
-                                                },
-                                                icon: Icon(
-                                                  Icons.edit,
-                                                  color: Colors.grey,
-                                                )),
-                                            IconButton(
-                                                onPressed: () async {
-                                                  context
-                                                      .read<
-                                                          DeleteTagViewModel>()
-                                                      .add(DeleteTag(
-                                                          id: tagdata.id ?? 0));
-                                                },
-                                                icon: Icon(
-                                                  Icons.delete,
-                                                  color: Colors.red,
-                                                )),
-                                          ],
+                                          
                                         ),
                                       ),
                                     ),
-                                  ),
-                                );
+                                  );
+                                
                               },
                               separatorBuilder: (context, index) => SizedBox(
                                     height: 6.h,

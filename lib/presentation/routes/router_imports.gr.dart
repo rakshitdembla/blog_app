@@ -25,6 +25,8 @@ import 'package:blog_app/presentation/screens/general/home/home_model.dart'
     as _i19;
 import 'package:blog_app/presentation/screens/general/home/view_blog.dart'
     as _i13;
+import 'package:blog_app/presentation/screens/general/profile/profile_imports.dart'
+    as _i6;
 import 'package:blog_app/presentation/screens/general/tags/addtag/addtag_imports.dart'
     as _i2;
 import 'package:blog_app/presentation/screens/general/tags/tags_imports.dart'
@@ -35,10 +37,10 @@ import 'package:blog_app/presentation/screens/general/tags/update_tag/update_tag
     as _i11;
 import 'package:blog_app/presentation/screens/login/loginpage_imports.dart'
     as _i5;
-import 'package:blog_app/presentation/screens/onboard/onboardimports.dart'
-    as _i6;
+import 'package:blog_app/presentation/screens/onboard/onboardimports.dart';
 import 'package:blog_app/presentation/screens/register/register_imports.dart'
     as _i7;
+import 'package:blog_app/presentation/screens/settings/settings_imports.dart';
 import 'package:blog_app/presentation/screens/splash/splash_imports.dart'
     as _i8;
 import 'package:blog_app/presentation/screens/userpage/userpage_imports.dart'
@@ -147,7 +149,7 @@ class LoginPageRoute extends _i14.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i6.Onboard]
+/// [Onboard]
 class OnboardRoute extends _i14.PageRouteInfo<void> {
   const OnboardRoute({List<_i14.PageRouteInfo>? children})
     : super(OnboardRoute.name, initialChildren: children);
@@ -157,7 +159,23 @@ class OnboardRoute extends _i14.PageRouteInfo<void> {
   static _i14.PageInfo page = _i14.PageInfo(
     name,
     builder: (data) {
-      return const _i6.Onboard();
+      return const Onboard();
+    },
+  );
+}
+
+/// generated route for
+/// [_i6.Profile]
+class ProfileRoute extends _i14.PageRouteInfo<void> {
+  const ProfileRoute({List<_i14.PageRouteInfo>? children})
+    : super(ProfileRoute.name, initialChildren: children);
+
+  static const String name = 'ProfileRoute';
+
+  static _i14.PageInfo page = _i14.PageInfo(
+    name,
+    builder: (data) {
+      return const _i6.Profile();
     },
   );
 }
@@ -174,6 +192,22 @@ class RegisterScreenRoute extends _i14.PageRouteInfo<void> {
     name,
     builder: (data) {
       return const _i7.RegisterScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [Settings]
+class SettingsRoute extends _i14.PageRouteInfo<void> {
+  const SettingsRoute({List<_i14.PageRouteInfo>? children})
+    : super(SettingsRoute.name, initialChildren: children);
+
+  static const String name = 'SettingsRoute';
+
+  static _i14.PageInfo page = _i14.PageInfo(
+    name,
+    builder: (data) {
+      return const Settings();
     },
   );
 }

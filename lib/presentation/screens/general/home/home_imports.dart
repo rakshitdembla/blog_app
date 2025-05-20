@@ -6,6 +6,9 @@ import 'package:blog_app/presentation/screens/general/home/bloc/home_events.dart
 import 'package:blog_app/presentation/screens/general/home/bloc/home_states.dart';
 import 'package:blog_app/presentation/screens/general/home/bloc/home_viewmodel.dart';
 import 'package:blog_app/presentation/screens/general/home/home_model.dart';
+import 'package:blog_app/presentation/screens/general/profile/profile_bloc/profile_states.dart';
+import 'package:blog_app/presentation/screens/general/profile/profile_bloc/profile_viewmodel.dart';
+import 'package:blog_app/presentation/screens/general/profile/profile_imports.dart';
 import 'package:blog_app/utils/refresh_functions.dart';
 import 'package:blog_app/utils/utils.dart';
 import 'package:cached_network_image/cached_network_image.dart';

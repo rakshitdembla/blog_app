@@ -26,14 +26,16 @@ class _UserpageState extends State<Userpage> {
               child: Column(
                 children: [
                   SizedBox(
-                          height: 80.h, width: 140.w,
-                        child: Image.asset(Assets.assetsImagesLogo,
-                        fit: BoxFit.contain,
-                          ),
-                      ),
-                  Spacer(),
+                    height: 80.h, 
+                    width: 140.w,
+                    child: Image.asset(
+                      Assets.assetsImagesLogo,
+                      fit: BoxFit.contain,
+                    ),
+                  ),
+                  const Spacer(),
                   Text(
-                    "Explore the world,\nBillions of thoughts.",
+                    "Explore the world,\nBillions of thoughts.".i18n,
                     style: TextStyle(
                       color: MyColors.whitetextcolor,
                       fontSize: 30.sp,
@@ -41,47 +43,39 @@ class _UserpageState extends State<Userpage> {
                     ),
                     textAlign: TextAlign.left,
                   ),
-                  SizedBox(
-                    height: 60.h,
-                  ),
+                  SizedBox(height: 60.h),
                   TextButton(
                     onPressed: () {
                       AutoRouter.of(context).push(LoginPageRoute());
                     },
-                    child: Text("Login",
+                    child: Text("Login".i18n,
                         style: GoogleFonts.poppins(
                             fontWeight: FontWeight.w500,
-                            fontSize : 16.5.sp,
+                            fontSize: 16.5.sp,
                             color: MyColors.whitetextcolor)),
                   ),
-                  SizedBox(
-                    height: 8.h,
-                  ),
+                  SizedBox(height: 8.h),
                   TextButton(
                     onPressed: () {
                       AutoRouter.of(context).push(RegisterScreenRoute());
                     },
-                    child: Text("Register",
+                    child: Text("Register".i18n,
                         style: GoogleFonts.poppins(
                             fontWeight: FontWeight.w500,
-                              fontSize : 16.5.sp,
+                            fontSize: 16.5.sp,
                             color: MyColors.whitetextcolor)),
                   ),
-                  SizedBox(
-                    height: 43.h,
-                  ),
+                  SizedBox(height: 43.h),
                   rich_text_widget(
                       color: MyColors.whitetextcolor,
-                      CtaText: "Browse Casually",
+                      CtaText: "Browse Casually".i18n,
                       recognizer: TapGestureRecognizer()
                         ..onTap = () {
                           Utils.showToast(
-                              message: "This feature isn't available yet!");
+                              message: "This feature isn't available yet!".i18n);
                         },
-                      initialtext: "Don't want to create"),
-                  SizedBox(
-                    height: 17.h,
-                  ),
+                      initialtext: "Don't want to create".i18n),
+                  SizedBox(height: 17.h),
                 ],
               ),
             ),

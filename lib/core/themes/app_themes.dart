@@ -12,10 +12,9 @@ class AppThemes {
       fontFamily: Appfonts.poppinsfont.fontFamily,
       textButtonTheme: TextButtonThemeData(
           style: ButtonStyle(
-        textStyle:  WidgetStateProperty.all(
+        textStyle: WidgetStateProperty.all(
           GoogleFonts.poppins(fontWeight: FontWeight.w500, color: Colors.white),
         ),
-        
       )));
 
   static final dark = ThemeData(

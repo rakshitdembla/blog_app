@@ -22,4 +22,5 @@ class ApiEndurls {
   static final String posts = "posts";
   static final String userposts = "user-posts";
   static final String addpost = "add-posts";
+  static final String deletepost = "delete-posts";
 }

@@ -7,21 +7,19 @@ class ProfileViewmodel extends Bloc<ProfileEvents, ProfileStates> {
   Repository repository;
   ProfileViewmodel({required this.repository}) : super(ProfileInitialState()) {
     on<FetchEvent>(
-      (event, emit) async{
+      (event, emit) async {
         emit(ProfileLoadingState());
-      
 
         try {
           final profilemodel = await repository.profileRepo.getuserposts();
           if (profilemodel.status == 1) {
-              
             emit(ProfileLoadedState(profileModel: profilemodel));
-          } else {
-             
+          } else if (profilemodel.posts.isEmpty) {
             emit(ProfileErrorState(error: "No data found!"));
+          } else {
+            emit(ProfileErrorState(error: "Something went wrong!"));
           }
         } catch (e) {
-          
           emit(ProfileErrorState(error: "An Error Occured!"));
         }
       },

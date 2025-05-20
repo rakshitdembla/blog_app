@@ -14,18 +14,21 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     Utils.manipulatelogin(context);
   }
- 
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
         height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width ,
+        width: MediaQuery.of(context).size.width,
         color: MyColors.primarycolor,
         child: Center(
           child: FadedScaleAnimation(
-            child: Image.asset(Assets.assetsImagesLogo,height: 150.h,width: 150.w,)),
+              child: Image.asset(
+            Assets.assetsImagesLogo,
+            height: 150.h,
+            width: 150.w,
+          )),
         ),
       ),
     );

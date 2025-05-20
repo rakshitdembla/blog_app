@@ -39,13 +39,13 @@ class _RegisterContainerState extends State<RegisterContainer> {
         child: Column(
           children: [
             Text(
-              "Register",
+              "Register".i18n,
               style: TextStyle(fontWeight: FontWeight.w900, fontSize: 18.sp),
             ),
             SizedBox(
               height: 35.h,
             ),
-            Align(alignment: Alignment.topLeft, child: "Name".text.make()),
+            Align(alignment: Alignment.topLeft, child: "Name".i18n.text.make()),
             SizedBox(
               height: 5.h,
             ),
@@ -60,7 +60,7 @@ class _RegisterContainerState extends State<RegisterContainer> {
             SizedBox(
               height: 25.h,
             ),
-            Align(alignment: Alignment.topLeft, child: "Email".text.make()),
+            Align(alignment: Alignment.topLeft, child: "Email".i18n.text.make()),
             SizedBox(
               height: 5.h,
             ),
@@ -75,7 +75,7 @@ class _RegisterContainerState extends State<RegisterContainer> {
             SizedBox(
               height: 25.h,
             ),
-            Align(alignment: Alignment.topLeft, child: "Password".text.make()),
+            Align(alignment: Alignment.topLeft, child: "Password".i18n.text.make()),
             SizedBox(
               height: 5.h,
             ),
@@ -123,7 +123,7 @@ class _RegisterContainerState extends State<RegisterContainer> {
                       ),
                     ),
                     Text(
-                      "Remember me",
+                      "Remember me".i18n,
                       style: GoogleFonts.poppins(
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w600,
@@ -149,7 +149,7 @@ class _RegisterContainerState extends State<RegisterContainer> {
                   );
                 } else {
                   return commonelevatedbutton(
-                      name: "Register",
+                      name: "Register".i18n,
                       onPressed: () {
                      
                         context.read<RegisterViewmodel>().add(RegisterSubmit(
@@ -168,13 +168,13 @@ class _RegisterContainerState extends State<RegisterContainer> {
             ),
             rich_text_widget(
                 color: MyColors.blacktextcolor,
-                CtaText: "Login",
+                CtaText: "Login".i18n,
                 recognizer: TapGestureRecognizer()
                   ..onTap = () {
                     context.router.removeUntil(
                         (route) => route.name == UserpageRoute.name);
                   },
-                initialtext: "Already have an account?")
+                initialtext: "Already have an account?".i18n)
           ],
         ),
       ),

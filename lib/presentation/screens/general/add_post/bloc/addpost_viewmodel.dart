@@ -12,9 +12,14 @@ class AddpostViewmodel extends Bloc<AddpostEvents, AddPostStates> {
      
       if (event.featuredimage == null ||
           event.body == null ||
-          event.title == null) {
+          event.title == null ||
+          event.slug == null ||
+          event.tagid == null ||
+          event.categoryid == null
+          
+          ) {
         emit(AddPostInvalidState(
-            message: "title,content & image is mandatory!"));
+            message: "All fields are mandatory!"));
           
       } else if (event.userid == null) {
         emit(AddPostErrorState(message: "An error occured!"));

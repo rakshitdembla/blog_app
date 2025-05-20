@@ -12,13 +12,12 @@ import 'package:fluttertoast/fluttertoast.dart';
 class Utils {
   Utils._();
 
-  //token functions
+  //sharedprefrences functions
   static Future<bool> savetoken({required String token}) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
     return prefs.setString("token", token);
   }
-  
 
   static Future<String?> gettoken() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -30,7 +29,7 @@ class Utils {
 
     return prefs.setInt("id", id);
   }
-  
+
   static Future<int?> getuserid() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     return prefs.getInt("id");
@@ -49,6 +48,25 @@ class Utils {
     return postheaders;
   }
 
+  static Future<bool> savelanguage({required Locale locale}) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    return prefs.setString("language", locale.toString());
+  }
+
+  static Future<String> getlanguage() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+
+   
+    var getlanguage = prefs.getString("language");
+
+    if (getlanguage != null) {
+      return getlanguage;
+    } else {
+      return "en-US";
+    }
+  }
+
   //login function
 
   static Future<void> manipulatelogin(context) async {
@@ -56,11 +74,11 @@ class Utils {
 
     if (token != null) {
       await Future.delayed(const Duration(seconds: 4), () {
-        AutoRouter.of(context).push(GeneralScreenRoute());
+        AutoRouter.of(context).push(const GeneralScreenRoute());
       });
     } else {
       await Future.delayed(const Duration(seconds: 4), () {
-        AutoRouter.of(context).push(OnboardRoute());
+        AutoRouter.of(context).push(const OnboardRoute());
       });
     }
   }
@@ -89,13 +107,14 @@ class Utils {
         style:
             TextStyle(fontWeight: FontWeight.w500, color: MyColors.whitecolor),
       ),
-      backgroundColor: const Color.fromARGB(255, 1, 223, 53),
+      backgroundColor: const Color.fromARGB(255, 0, 101, 24),
     ));
   }
 
   static ScaffoldFeatureController normalsnackbar(
       {required String message, required BuildContext context}) {
     return ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      duration: Duration(seconds: 1),
       content: Text(
         message,
         style:
@@ -126,7 +145,7 @@ class Utils {
     return timeago.format(dateTime);
   }
 
-  static Future<File?> pickimage () async {
+  static Future<File?> pickimage() async {
     final ImagePicker picker = ImagePicker();
     final XFile? image = await picker.pickImage(source: ImageSource.gallery);
 
@@ -134,7 +153,6 @@ class Utils {
       return File(image.path);
     } else {
       return null;
-      
     }
   }
 }

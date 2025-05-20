@@ -18,7 +18,7 @@ class onboard3 extends StatelessWidget {
           height: 41.h,
         ),
         Text(
-          "Stay informed with fresh and engaging \ncontent or contribute your unique thoughts\nand ideas with ease",
+          "Stay informed with fresh and engaging \ncontent or contribute your unique thoughts\nand ideas with ease".i18n,
           style: TextStyle(color: MyColors.blacktextcolor, fontSize: 15.sp),
           textAlign: TextAlign.center,
         )

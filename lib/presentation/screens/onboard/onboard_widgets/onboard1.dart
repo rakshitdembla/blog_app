@@ -18,7 +18,7 @@ class onboard1 extends StatelessWidget {
           height: 41.h,
         ),
         Text(
-          "Discover, engage and read the latest articles\nor as well as share your own thoughts and\nideas with the community",
+          "Discover, engage and read the latest articles\nor as well as share your own thoughts and\nideas with the community".i18n,
           style: TextStyle(color: MyColors.blacktextcolor, fontSize: 15.sp),
           textAlign: TextAlign.center,
         )

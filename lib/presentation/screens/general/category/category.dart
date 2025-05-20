@@ -3,7 +3,7 @@ part of 'category_imports.dart';
 @RoutePage()
 class Categories extends StatefulWidget {
   final NavigationType navigationType;
-  const Categories({super.key,required this.navigationType});
+  const Categories({super.key, required this.navigationType});
 
   @override
   State<Categories> createState() => _TagsState();
@@ -27,7 +27,7 @@ class _TagsState extends State<Categories> {
             padding: EdgeInsets.only(right: 15),
             child: IconButton(
                 onPressed: () async {
-                await NavigationsData.AddCategoryNavigation(context, mounted);
+                  await NavigationsData.AddCategoryNavigation(context, mounted);
                 },
                 icon: Icon(
                   FeatherIcons.plus,
@@ -50,7 +50,8 @@ class _TagsState extends State<Categories> {
         child: BlocBuilder<CategoryViewmodel, categoryStates>(
           buildWhen: (previous, current) => previous != current,
           builder: (context, state) {
-            if (state is categoryInitialState || state is categoryLoadingState) {
+            if (state is categoryInitialState ||
+                state is categoryLoadingState) {
               return Center(
                   child: LoadingAnimationWidget.stretchedDots(
                 color: MyColors.primarycolor,
@@ -66,7 +67,9 @@ class _TagsState extends State<Categories> {
                         } else if (state is DeleteCategorySuccessState) {
                           Utils.showToast(
                               message: state.messageModel.message.toString());
-                          context.read<CategoryViewmodel>().add(fetchcategory());
+                          context
+                              .read<CategoryViewmodel>()
+                              .add(fetchcategory());
                         } else if (state is DeleteCategoryErrorState) {
                           Utils.showToast(message: state.error.toString());
                         }
@@ -74,18 +77,22 @@ class _TagsState extends State<Categories> {
                       child: Flexible(
                           child: ListView.separated(
                               itemBuilder: (context, index) {
-                                EachCategory categorydata = state.category[index];
-                           
-                            
-        
-                                return InkWell(
-                                  onTap: () {
-                                    
-                                    if (widget.navigationType == NavigationType.inner) {
-                                    AutoRouter.of(context).popForced(categorydata);} else{}
-                                  },
-                                  child: Card(
-                                    color: MyColors.whitecolor,
+                                EachCategory categorydata =
+                                    state.category[index];
+
+                                return Card(
+                                  color: const Color.from(
+                                      alpha: 1, red: 1, green: 1, blue: 1),
+                                  child: InkWell(
+                                    splashColor:
+                                        const Color.fromARGB(84, 233, 147, 116),
+                                    onTap: () {
+                                      if (widget.navigationType ==
+                                          NavigationType.inner) {
+                                        AutoRouter.of(context)
+                                            .popForced(categorydata);
+                                      } else {}
+                                    },
                                     child: SizedBox(
                                       height: 60.h,
                                       child: Padding(
@@ -93,19 +100,19 @@ class _TagsState extends State<Categories> {
                                         child: Row(
                                           children: [
                                             Text(
-                                             (index + 1).toString(),
-                                             
+                                              (index + 1).toString(),
                                               style: TextStyle(
-                                                  color: MyColors.blacktextcolor),
+                                                  color:
+                                                      MyColors.blacktextcolor),
                                             ),
-                                           
                                             Spacer(
                                               flex: 1,
                                             ),
                                             Text(
                                               categorydata.title.toString(),
                                               style: TextStyle(
-                                                  color: MyColors.blacktextcolor),
+                                                  color:
+                                                      MyColors.blacktextcolor),
                                               overflow: TextOverflow.ellipsis,
                                             ),
                                             Spacer(
@@ -114,8 +121,10 @@ class _TagsState extends State<Categories> {
                                             IconButton(
                                                 onPressed: () {
                                                   NavigationsData
-                                                      .UpdateCategoryNavigation(context,
-                                                          mounted, categorydata);
+                                                      .UpdateCategoryNavigation(
+                                                          context,
+                                                          mounted,
+                                                          categorydata);
                                                 },
                                                 icon: Icon(
                                                   Icons.edit,
@@ -124,9 +133,11 @@ class _TagsState extends State<Categories> {
                                             IconButton(
                                                 onPressed: () async {
                                                   context
-                                                      .read<DeleteCategoryViewModel>()
+                                                      .read<
+                                                          DeleteCategoryViewModel>()
                                                       .add(DeleteCategory(
-                                                          id: categorydata.id ?? 0));
+                                                          id: categorydata.id ??
+                                                              0));
                                                 },
                                                 icon: Icon(
                                                   Icons.delete,
@@ -160,4 +171,3 @@ class _TagsState extends State<Categories> {
     );
   }
 }
-

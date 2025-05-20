@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:blog_app/core/constants/translate.i18n.dart';
 
 import 'package:blog_app/presentation/screens/onboard/onboard_widgets/pagecontroller.dart';
 

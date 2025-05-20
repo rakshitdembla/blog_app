@@ -1,0 +1,2 @@
+part of "../{{screen_name}}_imports.dart";
+
